@@ -22,6 +22,7 @@ public class MapTest {
 		st.put("20090002", new Student(20090002, "금잔디"));
 		st.put("20090003", new Student(20090003, "윤지후"));
 		System.out.println(st);//st(키,밸류)모든항목 출력
+		System.out.println();
 
 		st.remove("20090002");//20090002키값 삭제
 		st.put("20090003", new Student(20090003, "소이정"));//20090003값의 밸류교체
