@@ -19,7 +19,7 @@ public class FileServer_SimpleClient {
 		try {
 			FileWriter writer = new FileWriter("out.txt");
 			serverSocket = new ServerSocket(5434);
-			System.out.println("¼­¹ö ½ÇÇàÁß");
+			System.out.println("ì„œë²„ ì‹¤í–‰ì¤‘");
 			s1 = serverSocket.accept();
 			is = s1.getInputStream();
 			br_in = new BufferedReader(new InputStreamReader(is));

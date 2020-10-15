@@ -19,9 +19,10 @@ public class FileClient_SimpleClient {
 				pw.println(data);
 			}
 			
-			System.out.println("ÆÄÀÏÀ» Àü¼Û ÇÏ¿´½À´Ï´Ù.");
+			System.out.println("íŒŒì¼ì„ ì „ì†¡ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			pw.close();
-			s1.close();
+			s1.close(); // zzz
+		
 			
 			
 		}catch (IOException e ) {

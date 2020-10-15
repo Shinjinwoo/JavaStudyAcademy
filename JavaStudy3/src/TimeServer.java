@@ -5,20 +5,20 @@ import java.net.*;
 public class TimeServer {
 	public static void main(String[] args) {
 
-		int port = 7001; // Æ÷Æ®¹øÈ£ 7001
+		int port = 7001; // í¬íŠ¸ë²ˆí˜¸ 7001
 
-		try { // Æ®¶óÀÌ Ä³Ä¡±¸¹® 
+		try { // íŠ¸ë¼ì´ ìºì¹˜êµ¬ë¬¸
 			while (true) {
 
-				ServerSocket ss = new ServerSocket(port); // ¼ÒÄÏ¼­¹ö »ı¼º Æ÷Æ®¹øÈ£ 7001
+				ServerSocket ss = new ServerSocket(port); // ì†Œì¼“ì„œë²„ ìƒì„± í¬íŠ¸ë²ˆí˜¸ 7001
 
-				Socket client = ss.accept(); // accept ¸Ş¼Òµå¸¦ ÅëÇØ ¼­¹ö·Î µé¾î¿À´Â Å¬¶óÀÌ¾ğÆ® ´ë±â 
+				Socket client = ss.accept(); // accept ë©”ì†Œë“œë¥¼ í†µí•´ ì„œë²„ë¡œ ë“¤ì–´ì˜¤ëŠ” í´ë¼ì´ì–¸íŠ¸ ëŒ€ê¸°
 
-				ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream()); 
+				ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
 
 			}
 
-		} catch (Exception e) { // ¿¹¿ÜÃ³¸® ¹®±¸
+		} catch (Exception e) { // ì˜ˆì™¸ì²˜ë¦¬ ë¬¸êµ¬
 			System.out.println(e.getMessage());
 		}
 

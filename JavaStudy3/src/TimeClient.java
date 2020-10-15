@@ -2,45 +2,36 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-
-
 public class TimeClient {
-	public static void main (String [] args ) {
+	public static void main(String[] args) {
 		String server_Ip;
 		Date date = null;
 		int port = 7001;
-		
-		
-		
-		try {
-			
-		BufferedReader read = new BufferedReader(new InputStreamReader(System.in)); //ÀÔ·Â¹ŞÀº IP¸¦ ÀÌ¿ëÇÏ±â À§ÇØ ¹öÆÛ¸®´õ ÀÌ¿ë
-		System.out.println( "Å¸ÀÓ ¼­¹ö ½Ã°£ ¹Ş¾Æ¿À±â . . . "); 
-		System.out.println(" Å¸ÀÓ ¼­¹ö ¾ÆÀÌÇÇ ÀÔ·Â : ");
-		server_Ip = read.readLine(); // ¶óÀÎ ÇÏ³ª¸¦ ÀĞ´Â´Ù.
-		
-		
-		Socket client = new Socket ( server_Ip, port ); // IP,PORT ¹øÈ£¸¦ ¸Å°³º¯¼ö·Î ¹Ş´Â SockeÀ» ÅëÇØ ¼­¹ö¿¡ Á¢¼Ó
-		InputStream is = client.getInputStream();       // ÀĞ±â ¿¬»ê 
-		ObjectInputStream ois = new ObjectInputStream(is);  // ¹Ù¿¡¼­ °´Ã¼ ¾È¿¡ ÀúÀåµÇ¾î 
-		//ÀÖ´Â ³»¿ëÀ» ÆÄÀÏ·Î ÀúÀåÇÏ°Å³ª ³×Æ®¿öÅ©¸¦ ÅëÇÏ¿© ´Ù¸¥ °÷À¸·Î 
-		//Àü¼ÛÇÏ·Á¸é °´Ã¼¸¦ ¹ÙÀÌÆ® ÇüÅÂ·Î ÀÏÀÏÀÌ ºĞÇØÇØ¾ß ÇÑ´Ù. 
-		//ÀÌ¸¦ À§ÇÏ¿© °´Ã¼¸¦ Á÷Á¢ ÀÔÃâ·Â ÇÒ ¼ö ÀÖµµ·Ï ÇØÁÖ´Â °´Ã¼ ½ºÆ®¸²ÀÌ´Ù.
 
-		
-		date = (Date)ois.readObject();  //¼­¹öÀÇ ½Ã°£À» ¹Ş±âÀ§ÇÑ date¸¦ Date Å¬·¡½º¸¦ ÅëÇØ ÀĞ´Â´Ù.
-		System.out.println("ÇöÀç ½Ã°£ : " + date );  // ÇöÀç½Ã°£ Ãâ·Â
-		
-		ois.close(); 
-		client.close();
-		
-		
-		
-			
+		try {
+
+			BufferedReader read = new BufferedReader(new InputStreamReader(System.in)); // ì…ë ¥ë°›ì€ IPë¥¼ ì´ìš©í•˜ê¸° ìœ„í•´ ë²„í¼ë¦¬ë” ì´ìš©
+			System.out.println("íƒ€ì„ ì„œë²„ ì‹œê°„ ë°›ì•„ì˜¤ê¸° . . . ");
+			System.out.println(" íƒ€ì„ ì„œë²„ ì•„ì´í”¼ ì…ë ¥ : ");
+			server_Ip = read.readLine(); // ë¼ì¸ í•˜ë‚˜ë¥¼ ì½ëŠ”ë‹¤.
+
+			Socket client = new Socket(server_Ip, port); // IP,PORT ë²ˆí˜¸ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ëŠ” Sockeì„ í†µí•´ ì„œë²„ì— ì ‘ì†
+			InputStream is = client.getInputStream(); // ì½ê¸° ì—°ì‚°
+			ObjectInputStream ois = new ObjectInputStream(is); // ë°”ì—ì„œ ê°ì²´ ì•ˆì— ì €ì¥ë˜ì–´
+			// ìˆëŠ” ë‚´ìš©ì„ íŒŒì¼ë¡œ ì €ì¥í•˜ê±°ë‚˜ ë„¤íŠ¸ì›Œí¬ë¥¼ í†µí•˜ì—¬ ë‹¤ë¥¸ ê³³ìœ¼ë¡œ
+			// ì „ì†¡í•˜ë ¤ë©´ ê°ì²´ë¥¼ ë°”ì´íŠ¸ í˜•íƒœë¡œ ì¼ì¼ì´ ë¶„í•´í•´ì•¼ í•œë‹¤.
+			// ì´ë¥¼ ìœ„í•˜ì—¬ ê°ì²´ë¥¼ ì§ì ‘ ì…ì¶œë ¥ í•  ìˆ˜ ìˆë„ë¡ í•´ì£¼ëŠ” ê°ì²´ ìŠ¤íŠ¸ë¦¼ì´ë‹¤.
+
+			date = (Date) ois.readObject(); // ì„œë²„ì˜ ì‹œê°„ì„ ë°›ê¸°ìœ„í•œ dateë¥¼ Date í´ë˜ìŠ¤ë¥¼ í†µí•´ ì½ëŠ”ë‹¤.
+			System.out.println("í˜„ì¬ ì‹œê°„ : " + date); // í˜„ì¬ì‹œê°„ ì¶œë ¥
+
+			ois.close();
+			client.close();
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 }
