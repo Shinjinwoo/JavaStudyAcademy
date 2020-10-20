@@ -53,7 +53,9 @@ public class ThreadInterruptEx extends JFrame {
 				btn.setEnabled(false); // 버튼 비활성화
 			}
 		});
+		
 		c.add(btn);
+		c.add(timerLabel);
 		
 		setSize(300,150);
 		setVisible(true);
