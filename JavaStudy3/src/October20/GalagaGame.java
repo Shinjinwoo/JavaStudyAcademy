@@ -1,6 +1,7 @@
 package October20;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -24,6 +25,7 @@ public class GalagaGame extends JPanel implements KeyListener {
 	private BufferedImage shotImage; // 투사체의 이미지 선언
 	private BufferedImage shipImage; // 조종할 기체의 이미지 선언
 	private BufferedImage boomImage; // 폭탄의 이미지 선언
+	private BufferedImage alienshotImage;
 
 	public GalagaGame() {  
 		JFrame frame = new JFrame("Galaga Game"); // 프레임 선언
@@ -40,6 +42,8 @@ public class GalagaGame extends JPanel implements KeyListener {
 			shipImage = ImageIO.read(new File("shipImage.png"));
 			alienImage = ImageIO.read(new File("alienImage.png"));
 			boomImage = ImageIO.read(new File("boomImage.png"));
+			alienshotImage = ImageIO.read(new File("alienshotImage.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -50,16 +54,20 @@ public class GalagaGame extends JPanel implements KeyListener {
 		addKeyListener(this);
 	}
 
-	private void initSprites() {
+	public void initSprites() {
 		starship = new StarShipSprite(this, shipImage, 382, 460); // 조종할 기체의 객체 선언
 		sprites.add(starship); // 어레이리스트의 기체 add
+		
 		for (int y = 0; y < 5; y++) { // 좌우로 12개 상하로 5줄의 기체를 생성후 기체칸에 넣음
 			for (int x = 0; x < 12; x++) {
 				Sprite alien = new AlienSprite(this, alienImage, 100 + (x * 50), (50) + y * 30);
+				AlenShotSprite AlienShot = new AlenShotSprite(this, alienshotImage,alien.getX(), alien.getY()+30);
 				sprites.add(alien);
+				sprites.add(AlienShot);
 			}
 		}
 	}
+	
 
 	private void startGame() {
 		sprites.clear();
@@ -73,12 +81,18 @@ public class GalagaGame extends JPanel implements KeyListener {
 	public void removeSprite(Sprite sprite) {
 		sprites.remove(sprite);
 	}
+	
+	public void removeStarship(Sprite sprite) {
+		sprites.remove(starship);
+	}
 	public void fire() { // 투사체를 2발로 설정하고 좌표와 이미지를 지정하는 메소드
 		ShotSprite shot = new ShotSprite(this,shotImage, starship.getX()+10,starship.getY()-30);
 		ShotSprite shot2 = new ShotSprite(this,shotImage, starship.getX()+50,starship.getY()-30);
 		sprites.add(shot);
 		sprites.add(shot2);
 	}
+	
+
 	public void boom() { // 폭탄의 좌표와 이미지를 지정하는 메소드
 		Boom boom = new Boom(this, boomImage, starship.getX()+10,starship.getY()-30);
 		sprites.add(boom);
@@ -100,6 +114,8 @@ public class GalagaGame extends JPanel implements KeyListener {
 				Sprite sprite = (Sprite)sprites.get(i);
 				sprite.move(); // 게임이 계속되는 동안 기체들은 move();
 			}
+			
+			
 			for(int p=0;p<sprites.size();p++) {
 				for(int s=p+1;s<sprites.size();s++) {
 					Sprite me = (Sprite)sprites.get(p);
@@ -132,6 +148,7 @@ public class GalagaGame extends JPanel implements KeyListener {
 			starship.setDy(+3);
 		if(e.getKeyCode()==KeyEvent.VK_SPACE)
 			fire();
+		
 		if(e.getKeyCode()==KeyEvent.VK_B)
 			boom();
 	}
