@@ -12,6 +12,7 @@ public class Game369DoubleFrame extends JFrame{
 		setContentPane(new GamePanel());
 		setSize(300,300);
 		setVisible(true);
+		//System.out.println();
 	}
 	
 	class GamePanel extends JPanel {
